@@ -26,13 +26,10 @@ function findByUsername(username) {
 		.first();
 }
 
-function add(userAcc) {
-	return db('users')
-		.insert(userAcc, 'id')
-		.then(ids => {
-			const [id] = ids;
-			getById(id);
-		});
+async function add(userAcc) {
+	const [id] = await db('users').insert(userAcc, 'id');
+	
+	return getById(id);
 }
 
 function deleteUser(id) {

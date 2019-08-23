@@ -13,10 +13,9 @@ describe('server', () => {
 			return request(server)
 				.get('/')
 				.then(res => {
+					// check that the status code is 200
 					expect(res.status).toBe(200);
 				});
-
-			// check that the status code is 200
 		});
 	});
 });
