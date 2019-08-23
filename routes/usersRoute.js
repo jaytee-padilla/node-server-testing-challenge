@@ -65,7 +65,23 @@ router.post('/login', (req, res) => {
 		});
 })
 
-// logout
+
+// DELETE
+// delete user
+router.delete('/users/:id', restricted, (req, res) => {
+	db.deleteUser(req.params.id)
+		.then(deleted => {
+			if(deleted) {
+				res.status(200).json({message: `User account with user_id: ${req.params.id} deleted`});
+			} else {
+				res.status(404).json({message: 'User ID doesn\'t exist'});
+			}
+		})
+		.catch(error => {
+			res.status(400).json({message: 'Error accessing database'});
+		});
+})
+
 
 
 // functions

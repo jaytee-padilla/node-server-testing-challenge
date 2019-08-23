@@ -5,7 +5,8 @@ module.exports = {
 	get,
 	getById,
 	findByUsername,
-	add
+	add,
+	deleteUser
 }
 
 function get() {
@@ -32,4 +33,10 @@ function add(userAcc) {
 			const [id] = ids;
 			getById(id);
 		});
+}
+
+function deleteUser(id) {
+	return db('users')
+		.where('user_id', id)
+		.del();
 }
